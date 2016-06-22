@@ -4,7 +4,6 @@
 }
 
 html {
-    width: 1200px;
     margin: auto;
     background-color: #3E3E3D ;
 }
@@ -91,6 +90,13 @@ th {
 
 .edit:hover {
     border: 1px solid #4BB3D2;
+}
+
+#add-team{
+    width: 15px;
+    display: inline;
+    background-color: white;
+    border-radius: 5px;
 }
 
 .edit_links {

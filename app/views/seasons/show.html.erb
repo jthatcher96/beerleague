@@ -10,17 +10,19 @@
     <% end %>
   </div>
 </div>
-<% if admin? %>
-  <div class="edit">
-    <%= link_to "Add Team", new_league_season_team_path(season_id: params[:id]) %>
-  </div>
-<% end %>
 
 <h3>Standings</h3>
 <table class="table table-hover">
   <thead>
     <tr>
-      <th> Team </th>
+      <th>Team 
+        <% if admin? %>
+          <div class="edit" id="add-team">
+            <%= link_to "+", new_league_season_team_path(season_id: params[:id]) %>
+          </div>
+        <% end %>
+
+      </th>
       <th> Wins </th>
       <th> Losses </th>
     </tr>
@@ -53,7 +55,7 @@
     <% if game.result == nil %>
     <li> <%= link_to "#{game.start_date.strftime('%A, %B %d, %Y')}", [@league, @season, game] %> <%= Team.find(game.participants[0].team_id).name %> TBD - <%= Team.find(game.participants[1].team_id).name %> TBD</li>
     <% else %>
-      <li> <%= link_to "#{game.start_date.strftime('%A, %B %d, %Y')}}", [@league, @season, game] %> <%= Team.find(game.participants[0].team_id).name %> <%= Result.find_by(game_id: game.id).winner_score %> - <%= Team.find(game.participants[1].team_id).name %> <%=Result.find_by(game_id: game.id).loser_score %></li>
+      <li> <%= link_to "#{game.start_date.strftime('%A, %B %d, %Y')}", [@league, @season, game] %> <%= Team.find(game.participants[0].team_id).name %> <%= Result.find_by(game_id: game.id).winner_score %> - <%= Team.find(game.participants[1].team_id).name %> <%=Result.find_by(game_id: game.id).loser_score %></li>
     <% end %>
   <% end %>
 </ul>

@@ -50,16 +50,15 @@
     <li class="list-group-item"><%= player.full_name %></li>
     <% end %>
   <% end %>
-  <% if team_manager?(@team) %>
-<% end %>
 </ul>
-<%= form_for(@membership) do |f| %>
-  <p>
-    <%= f.collection_select(:user_id, User.all, :id, :full_name, {include_blank: true}) %>
-    <%= f.hidden_field(:team_id, value: @team.id) %>
-  </p>
-  <p>
-    <%= f.submit "Add Player" %>
-  </p>
+<% if team_manager?(@team) %>
+  <%= form_for(@membership) do |f| %>
+    <p>
+      <%= f.collection_select(:user_id, User.all, :id, :full_name, {include_blank: true}) %>
+      <%= f.hidden_field(:team_id, value: @team.id) %>
+    </p>
+    <p>
+      <%= f.submit "Add Player" %>
+    </p>
+  <% end %>
 <% end %>
-
